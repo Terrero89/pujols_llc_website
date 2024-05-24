@@ -1,13 +1,24 @@
-<script setup lang="ts">
+<template>
+  <div class="container">
+
+
+
+
+    <LayoutContent/>
+
+  </div>
+</template>
+
+<script setup>
+// Import your components (Navbar and HeroSection)
+
 
 </script>
 
-<template>
-<div>
-  main page
-</div>
-</template>
-
 <style scoped>
-
+.container {
+  min-height: 100vh; /* Set minimum height for full viewport */
+  display: flex;
+  flex-direction: column;
+}
 </style>

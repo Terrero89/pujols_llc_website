@@ -1,35 +1,10 @@
-<template>
-  <div >
-    <nav
-        class="navbar"
-        :class="{ navbarOn: isScrolled, navbarOff: !isScrolled }"
-    >
-      <a href="#" class="nav-logo">ST</a>
-      <ul class="nav-menu" :class="{ active: menuIsVisible }">
-        <li class="nav-item" @click="toggleOn"><a href="#about" class="nav-link">About</a>
-        </li>
-      </ul>
-      <div class="hamburger" @click="toggleOn" :class="{ active: menuIsVisible }">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </nav>
-  </div>
-</template>
-
-<script setup>
-import {ref, onMounted, onBeforeUnmount} from 'vue';
-// Assuming TheTriangle component path
-
-const menuIsVisible = ref(false);
+<script setup lang="ts">
+import {onMounted, onBeforeUnMount, ref} from "vue"
 const isScrolled = ref(false);
 
+const menuIsVisible = ref(false);
 const updateScroll = () => {
-  if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-  ) {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
     isScrolled.value = true;
   } else {
     isScrolled.value = false;
@@ -41,174 +16,116 @@ const toggleOn = () => {
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', updateScroll);
+  window.addEventListener("scroll", updateScroll);
   updateScroll(); // Call initially to set state
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', updateScroll);
+  window.removeEventListener("scroll", updateScroll);
 });
 </script>
 
-<style scoped>
-/* Your styles here */
-</style>
+<template>
+  <div>
+    <nav
+      class="navbar"
+      :class="{ navbarOn: isScrolled, navbarOff: !isScrolled }"
+    >
+      <a href="#" :class="[{ font: isScrolled }]" class="nav-logo"
+        >Pujols Roofing LLC</a
+      >
+      <ul class="nav-menu" :class="[{ active: menuIsVisible }]">
+        <li class="nav-item">
+          <a :class="{ font: isScrolled }" href="#about-section">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a :class="{ font: isScrolled }" href="#services-section">Services</a>
+        </li>
+        <li class="nav-item">
+          <a :class="{ font: isScrolled }" href="#gallery-section">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a :class="{ font: isScrolled }" href="#contact-section">Contact</a>
+        </li>
+      </ul>
+      <div
+        class="hamburger"
+        @click="toggleOn"
+        :class="[{ active: menuIsVisible }]"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </div>
+</template>
 
-
 <style scoped>
+.nav-item .font {
+  color: white;
+  transition: all 0.3s ease-out;
+}
+
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c2c2c;
+  list-style: none;
+  text-decoration: none;
+}
+.nav-logo.font {
+  color: white;
+  transition: all 0.3s ease-out;
+}
 
 .navbar {
-  border: solid black 1px;
-  height: 4rem;
-  position: fixed;
-  width: 100%;
-  top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 1.5rem 1.5rem;
-  z-index: 3; /* Assuming no header element */
-
-  overflow: hidden;
-  /*background-color: rgb(28, 26, 51);*/
-}
-
-.navbarOn {
-  background-color: #01152e;
-  /* backdrop-filter: blur(10px); */
-  transition: background 600ms ease-out;
-  position: fixed;
-  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+  position: fixed; /* Stack on top */
   top: 0;
-  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
-  border-bottom: 1px rgb(44, 44, 44, 0.1) solid;
-  padding: 1.5rem 1.5rem;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.navbarOff {
-  overflow: hidden;
-  position: fixed;
+  left: 0;
   width: 100%;
-  top: 0;
-  background-color: none;
-  transition: background 600ms ease-in;
+  z-index: 10; /* Ensure navbar stays on top */
+  transition: background 600ms ease-out; /* Animation for scroll effect */
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-/* hover effect starts */
-nav .nav-logo,
-nav .nav-link {
-  position: relative;
-
-  /* color: #71DFE7; */
-  color: rgba(44, 43, 44, 0.8);
-}
-
-/*underline for links start*/
-nav .nav-logo::before {
-  content: "";
-  display: block;
-  height: 1px;
-  background: #61DBFB;;
-  position: absolute;
-  top: 1.2em;
-  left: 0;
-  right: 0;
-  transform: scale(0, 1);
-  transition: transform ease-in-out 250ms;
-}
-
-nav .nav-link::before {
-  content: "";
-  display: block;
-  height: 1px;
-  background: #353a3c;;
-  position: absolute;
-  top: 1.5em;
-  left: 0;
-  right: 0;
-  transform: scale(0, 1);
-  transition: transform ease-in-out 250ms;
-}
-
-nav .nav-logo:hover::before,
-nav .nav-link:hover::before {
-  transform: scale(1, 1);
-}
-
-/*underline for links end*/
-
-nav .nav-logo {
+.nav-menu {
+  display: flex;
   list-style: none;
-  text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: none;
-  z-index: 11;
-  margin-right: 50%;
-  font-family: "Inconsolata", monospace;
-}
-
-/*nav-links colors */
-nav .nav-link {
-  font-size: 1rem;
-  font-weight: 400;
-  color: none;
-  letter-spacing: 0.15rem;
-  font-family: "Inconsolata", monospace;
-}
-
-/* hover nav link */
-nav .nav-logo:hover,
-.nav-link:hover {
-  transition: all 0.3s ease-in-out;
-  color: #2d8197;
-  animation: underline 1s ease-in-out;
-}
-
-/* hover effect ends */
-.nav-item,
-.nav-item a {
-  list-style: none;
-  text-decoration: none;
-
-}
-
-ul.nav-menu {
-  margin-bottom: 0;
-
-
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-  margin: 0 1.5rem;
+  margin-right: 1.5rem;
 }
 
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.nav-item a:hover {
+  color: #007bff; /* Optional hover color */
+}
+
+/* Style for navbar background color change on scroll */
+.navbarOn {
+  background-color: #8b8b8b;
+  /* backdrop-filter: blur(10px); */
+  transition: background 600ms ease-out;
+}
+
+/* Hamburger menu styles */
 .hamburger {
   display: none;
   z-index: 110;
-  /* margin: 0 1.5rem; */
+  cursor: pointer;
 }
 
 .bar {
@@ -223,7 +140,6 @@ ul.nav-menu {
 }
 
 .nav-menu {
-  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -233,11 +149,11 @@ ul.nav-menu {
 }
 
 .bar:nth-child(2) {
-  width: 10px;
+  width: 25px;
 }
 
 .bar:nth-child(3) {
-  width: 7px;
+  width: 25px;
 }
 
 /* Media query to show hamburguer */
@@ -274,6 +190,8 @@ ul.nav-menu {
   }
 
   .nav-item {
+    font-size: 3rem;
+
     align-items: center;
     color: #000000;
     margin: 4.5rem 0;
@@ -282,16 +200,14 @@ ul.nav-menu {
 
   /* nav links in mobile */
   .nav-item a {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     margin: 2.5rem 0;
     color: rgba(255, 255, 255, 0.8);
-
   }
 
   .hamburger {
     display: block;
     cursor: pointer;
-
   }
 
   .hamburger.active .bar:nth-child(2) {
@@ -318,6 +234,4 @@ ul.nav-menu {
 .nav-active {
   transform: translateX(0%);
 }
-
-
 </style>
