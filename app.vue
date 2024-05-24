@@ -1,9 +1,6 @@
 <template>
   <div>
     <NavNavbar/>
-    <HeroSection></HeroSection>
-    <AboutSection/>
-    <ContactSection/>
-<ServicesSection/>
+<LayoutContent/>
   </div>
 </template>
