@@ -1,7 +1,7 @@
 <template>
   <div>
-    <navNavbar/>
-    <heroSection></heroSection>
+    <NavNavbar/>
+    <HeroSection></HeroSection>
     <AboutSection/>
     <ContactSection/>
 <ServicesSection/>

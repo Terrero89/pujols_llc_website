@@ -5,7 +5,7 @@
 <template>
   <div>
     <section id="about-section">
-      about Section
+      <div data-aos="fade-up">ABOOOOUUUUTTTT </div>
 
     </section>
 

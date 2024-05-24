@@ -1,7 +1,7 @@
 <template>
     <div>
         <section id="hero-section">
-            Hero Section
+            <div data-aos="fade-up">HERO SECTION</div>
 
         </section>
        

@@ -1,10 +1,10 @@
 <template>
     <div class="nav">
 
-     <!-- <NuxtLink to="#">HOME</NuxtLink> -->
+
         <ul>
 
-          
+
             <li ><a href="#hero-section">Home</a></li>
             <li ><a href="#about-section">About</a></li>
             <li ><a href="#services-section">Services</a></li>
@@ -22,3 +22,5 @@
 }
 
 </style>
+<script setup lang="ts">
+</script>
