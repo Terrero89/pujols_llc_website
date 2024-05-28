@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, onBeforeUnMount, ref} from "vue"
+import {onMounted,onBeforeUnmount, ref} from "vue"
 const isScrolled = ref(false);
 
 const menuIsVisible = ref(false);
