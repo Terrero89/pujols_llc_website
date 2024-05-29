@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
     right: 0%;
     flex-direction: column;
     justify-content: center;
-    background-color: #005ec7;
+    background-color: #f3f3f3;
     border-radius: 0 0 10px 10px;
     text-align: center;
     transition: 0.3s;
@@ -202,7 +202,7 @@ onBeforeUnmount(() => {
   .nav-item a {
     font-size: 1.1rem;
     margin: 2.5rem 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(39, 39, 39, 0.8);
   }
 
   .hamburger {

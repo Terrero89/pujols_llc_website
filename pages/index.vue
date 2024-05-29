@@ -2,15 +2,13 @@
   <div class="container">
 
 
-
-
     <LayoutContent/>
 
   </div>
 </template>
 
 <script setup>
-// Import your components (Navbar and HeroSection)
+
 
 
 </script>
